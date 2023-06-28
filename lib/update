@@ -1,0 +1,52 @@
+
+
+
+DELETE BOOKING
+
+  Padding(
+                              padding: EdgeInsets.only(left: 300),
+                              child: IconButton(
+                                color: Colors.pink,
+                                icon: Icon(Icons.delete_rounded,),
+                                onPressed: () {
+                                   //alert(context, title: Text('Delete Booking?', textAlign: TextAlign.center), content: Text('Data will be remove and lost'), textOK: Text('OK'),);
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('Delete Booking?'),
+                                        content: const Text('This action will remove and delete the booking. Are you sure?'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              db.deleteBooking(booking).then((res) {
+                                                if (res > 0) {
+                                                  Navigator.pop(context);
+                                                 // Close the dialog
+                                                  // Perform any additional actions after successful deletion
+                                                }
+                                              });
+                                            },
+                                            child: const Text('OK'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context); // Close the dialog
+                                            },
+                                            child: const Text('Cancel'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+
+                                },
+
+                              ),
+
+                            ),
+
+
+
+
+
